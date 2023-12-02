@@ -2,6 +2,7 @@ package com.pjay.StudentService.Repository;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +19,7 @@ public class StudentRepositoryTest {
     private StudentRepository studentRepository;
 
     @Test
+    @Disabled
     public void saveStudent(){
 
         Guardian guardian = Guardian.builder()
@@ -38,10 +40,43 @@ public class StudentRepositoryTest {
 
 
     @Test
+    @Disabled
     public void printAllStudent(){
         List<Student> studentList = studentRepository.findAll();
 
         System.out.println("StudentList = "+ studentList);
     }
+
+    @Test
+    @Disabled
+    public void printStudentByFirstName(){
+        List<Student> student = studentRepository.findByFirstName("Jerry");
+
+        System.out.println("Student: " + student);
+    }
+
+    @Test
+    @Disabled
+    public void printStudentByFirstNameContains(){
+        List<Student> student = studentRepository.findByFirstNameContaining("Je");
+
+        System.out.println("Student: " + student);
+    }
+
+    @Test
+    @Disabled 
+    public void getStudentByEmailAddress(){
+        Student student = studentRepository.getStudentByEmailAddress("jerry@gmail.com");
+
+        System.out.println("Student : " + student);
+    }
+
+    @Test
+    public void updateNamebyEmail(){
+        studentRepository.updateNamebyEmail("Yaw","jerry@gmail.com");
+
+        printAllStudent();
+    }
+
 }  
 
